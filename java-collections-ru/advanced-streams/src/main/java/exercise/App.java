@@ -15,6 +15,8 @@ public class App {
     private static String data1;
     private static String data2;
 
+    private static int counter = 0;
+
     private static Path getFixturePath(String fileName) {
         return Paths.get("src", "test", "resources", "fixtures", fileName)
                 .toAbsolutePath().normalize();
@@ -35,15 +37,16 @@ public class App {
     public static String getForwardedVariables(String string) {
         var prefix = "X_FORWARDED_";
         Stream<String> stream = string.lines();
-        var result = stream.filter(el -> el.contains(prefix) && el.contains("environment"))
-                .flatMap(el -> Stream.of(el.substring(el.indexOf(prefix))))
+        var result = Arrays.stream(stream.filter(el -> el.contains(prefix) && el.contains("environment"))
+                        .flatMap(el -> Stream.of(el.substring(el.indexOf(prefix))))
+                        .collect(Collectors.joining(","))
+                        .split(","))
                 .filter(el -> el.contains(prefix))
-                .toList();
-        System.out.println(result.size());
+                .map(el -> el.replaceAll(prefix, "").replaceAll("\"", ""))
+                .collect(Collectors.joining(","));
 
-        var sb = new StringBuilder();
-        result.forEach(el -> sb.append(el).append(','));
-        return sb.toString();
+        System.out.println(result);
+        return result;
     }
 }
 //END
