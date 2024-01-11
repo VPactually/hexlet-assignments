@@ -9,13 +9,11 @@ import java.util.stream.Collectors;
 // BEGIN
 public class App {
     public static void main(String[] args) {
-        var flat = new Flat(54.5, 4, 3);
-        System.out.println(flat);
-
-        var cottage = new Cottage(120.5, 2);
-        System.out.println(cottage);
-
-        System.out.println(buildApartmentsList(List.of(cottage, flat), 2));
+        var reversedSequence = new ReversedSequence("String");
+        System.out.println(reversedSequence);
+        System.out.println(reversedSequence.charAt(2));
+        System.out.println(reversedSequence.subSequence(1, 4));
+        System.out.println(reversedSequence.length());
     }
 
     public static List<String> buildApartmentsList(List<Home> list, int count) {

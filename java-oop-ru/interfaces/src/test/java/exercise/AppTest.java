@@ -57,6 +57,13 @@ class AppTest {
     }
 
     // BEGIN
-    
+    @Test
+    void testReversedSequence() {
+        var reversedSequence = new ReversedSequence("string");
+
+        assertThat(reversedSequence.charAt(0)).isEqualTo('g');
+        assertThat(reversedSequence.length()).isEqualTo(6);
+        assertThat(reversedSequence.subSequence(1, 4)).isEqualTo("nir");
+    }
     // END
 }
