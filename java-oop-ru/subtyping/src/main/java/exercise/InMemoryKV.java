@@ -4,12 +4,12 @@ import java.util.Map;
 import java.util.HashMap;
 
 // BEGIN
-public class InMemoryKV implements KeyValueStorage{
+public class InMemoryKV implements KeyValueStorage {
 
     private Map<String, String> data;
     private Map<String, String> beginData;
 
-    public InMemoryKV (Map<String, String> data) {
+    public InMemoryKV(Map<String, String> data) {
         this.data = new HashMap<>(data);
     }
 
