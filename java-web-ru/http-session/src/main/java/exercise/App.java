@@ -21,6 +21,8 @@ public final class App {
             var page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
             var per = ctx.queryParamAsClass("per", Integer.class).getOrDefault(5);
 
+            page = page * per > Data.getUsers().size() ? 1 : page;
+
             var startIndex = (page - 1) * per;
             var endIndex = Math.min(startIndex + per, Data.getUsers().size());
 
