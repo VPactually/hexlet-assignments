@@ -62,7 +62,7 @@ public class PostsController {
         var id = ctx.pathParamAsClass("id", Long.class).get();
         var post = PostRepository.find(id)
                 .orElseThrow(() -> new NotFoundResponse("Entity with id = " + id + " not found"));
-        var page = new EditPostPage(post.getName(), post.getBody(), null);
+        var page = new EditPostPage(post.getId(), post.getName(), post.getBody(), null);
         ctx.render("posts/edit.jte", Collections.singletonMap("page", page));
     }
 
@@ -83,7 +83,8 @@ public class PostsController {
             PostRepository.update(post);
             ctx.redirect(NamedRoutes.postsPath());
         } catch (ValidationException e) {
-            var page = new EditPostPage(post.getName(), post.getBody(), e.getErrors());
+            var page = new EditPostPage(post.getId(), ctx.formParam("name"), ctx.formParam("body"), e.getErrors());
+            ctx.status(422);
             ctx.render("posts/edit.jte", Collections.singletonMap("page", page));
         }
     }
