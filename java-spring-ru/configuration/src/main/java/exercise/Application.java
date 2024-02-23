@@ -27,17 +27,13 @@ public class Application {
 
     @GetMapping("/admins")
     public List<String> getAdmins(){
-        var result = new ArrayList<String>();
+
         var admins = properties.getAdmins();
-        for (var email : admins) {
-            for (var user : users) {
-                if (user.getEmail().equalsIgnoreCase(email) && !result.contains(user.getName())){
-                    result.add(user.getName());
-                }
-            }
-        }
-        Collections.sort(result);
-        return result;
+        return users.stream()
+                .filter(u -> admins.contains(u.getEmail()))
+                .map(User::getName)
+                .sorted()
+                .toList();
     }
     // END
 
