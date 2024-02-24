@@ -10,11 +10,10 @@ import exercise.daytime.Daytime;
 import exercise.daytime.Day;
 import exercise.daytime.Night;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
+import org.springframework.web.context.annotation.RequestScope;
 
 
 // BEGIN
-@Scope("singleton")
 // END
 @SpringBootApplication
 public class Application {
@@ -25,6 +24,7 @@ public class Application {
 
     // BEGIN
     @Bean
+    @RequestScope
     public Daytime getTime() {
         var now = LocalDateTime.now();
         return now.getHour() >= 6 && now.getHour() <= 22 ? new Day() : new Night();
