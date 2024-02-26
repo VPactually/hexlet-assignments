@@ -8,6 +8,7 @@ import java.time.LocalDate;
 public class GuestCreateDTO {
 
     @NotNull
+    @NotBlank
     private String name;
     @Email
     private String email;
