@@ -21,17 +21,17 @@ import org.mapstruct.ReportingPolicy;
 )
 public abstract class ProductMapper {
 
-    @Mapping(target = "name", source = "title")
-    @Mapping(target = "cost", source = "price")
-    @Mapping(target = "barcode", source = "vendorCode")
+    @Mapping(source = "title", target = "name")
+    @Mapping(source = "price", target = "cost")
+    @Mapping(source = "vendorCode", target = "barcode")
     public abstract Product map(ProductCreateDTO productCreateDTO);
 
-    @Mapping(target = "title", source = "name")
-    @Mapping(target = "price", source = "cost")
-    @Mapping(target = "vendorCode", source = "barcode")
+    @Mapping(source = "name",target = "title")
+    @Mapping(source = "cost", target = "price")
+    @Mapping(source = "barcode", target = "vendorCode")
     public abstract ProductDTO map(Product product);
 
-    @Mapping(target = "cost", source = "price")
+    @Mapping(source = "price",target = "cost")
     public abstract void update(ProductUpdateDTO productUpdateDTO, @MappingTarget Product product);
 }
 // END

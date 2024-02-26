@@ -18,8 +18,7 @@ import jakarta.persistence.GeneratedValue;
 @Entity
 @Table(name = "products")
 @EntityListeners(AuditingEntityListener.class)
-@Getter
-@Setter
+
 public class Product {
 
     @Id
@@ -37,4 +36,52 @@ public class Product {
 
     @CreatedDate
     private LocalDate createdAt;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public long getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(long barcode) {
+        this.barcode = barcode;
+    }
+
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
 }
